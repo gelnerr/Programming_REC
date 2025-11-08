@@ -1,142 +1,88 @@
-# Student Planner
+# Programming - REC 2025
+### 🧩 Problem Statement
+University students often struggle to stay organized and manage their study time effectively across multiple classes, assignments, labs, midterms, and appointments. This often leads to missed deadlines, poor academic performance, and burnout.
 
-A minimalist React web application designed to help university students manage their tasks and reduce stress.
+Our task was to design a **minimum viable product (MVP)** that helps students efficiently manage their academic life. The tool should be intuitive, featuring a **calendar** and a **dashboard**, allowing users to input tasks at specific dates and times.
 
-## Features
+---
 
-- **Minimalist Dashboard**: Shows only tasks due in the next 7 days to reduce overwhelm
-- **Syllabus Parser**: Automatically extracts tasks from syllabus text using AI-powered parsing
-- **Task Management**: Add, view, and delete tasks with priorities, weightage, and effort levels
-- **Calendar View**: Visual calendar showing all tasks with date indicators
-- **Dark/Light Mode**: Built-in theme switcher for comfortable viewing
-- **Local Storage**: All data persists in your browser - no backend needed
+## 💡 Solution Overview
+Our solution, **Syllabyte**, is an intelligent planner that automates task management for students.
 
-## Tech Stack
+Instead of manually entering dozens of deadlines from multiple syllabi, students can **paste their syllabus text directly into the app**, and our parser automatically extracts key dates (assignments, labs, quizzes, exams) and adds them to a clean, visual calendar.
 
-- **React.js**: Frontend framework
-- **Chakra UI**: Component library for consistent, accessible UI
-- **react-calendar**: Calendar component
-- **Local Storage**: Browser-based data persistence
+### Core Goals
+- Simplify task entry  
+- Reduce setup time at the start of the term  
+- Help students visualize workload distribution  
+- Prevent burnout through smart prioritization and minimal display
 
-## Installation
+---
 
-1. Install dependencies:
-```bash
-npm install
-```
+## 🧠 Key Features (MVP)
+| Feature | Description |
+|----------|-------------|
+| 🗓️ **Calendar Integration** | Input tasks for specific dates and times |
+| ⭐ **Smart Priority System** | Automatically ranks tasks by urgency and effort |
+| 📋 **Syllabus Parser** | Paste course outlines; the app extracts and lists deadlines using Regex |
+| 🎨 **Color-Coded Dashboard** | Visual priority indicators based on effort and due date |
+| 🌙 **Dark/Light Mode** | Accessibility option for late-night or bright-light studying |
+| 🧭 **Minimal Display Mode** | Reduces on-screen clutter, showing only upcoming tasks |
 
-2. Start the development server:
-```bash
-npm start
-```
+---
 
-3. Open [http://localhost:3000](http://localhost:3000) in your browser
+## 🗺️ Story Map Overview
+### Epics
+- **Scheduling** – Calendar editing and priority task creation  
+- **Syllabus Parser** – Text parsing and automated task detection  
+- **Dashboard Overview** – Daily/weekly view and upcoming summary  
+- **Accessibility** – Customizable appearance and dark/light mode  
 
-## Project Structure
+### MVP Highlights
+- Ability to input tasks at specific dates and times  
+- Smart priority assignment (based on effort and urgency)  
+- Regex-based syllabus parsing  
+- Automatic weekly task generation  
+- Color-coded categorization  
+- Minimalist task display  
 
-```
-src/
-├── App.js              # Root component with state management and local storage
-├── Dashboard.js        # Main view with task filtering and sorting
-├── Calendar.js         # Calendar view with task indicators
-├── TaskCard.js         # Reusable task display component
-├── TaskForm.js         # Modal for adding new tasks
-├── SyllabusParser.js   # Modal for parsing syllabus text
-├── CalendarStyles.css  # Custom calendar styling
-└── index.js            # Application entry point
-```
+---
 
-## Usage
+## ⚙️ Tech Stack
+- **Frontend:** React.js / TypeScript  
+- **Styling:** TailwindCSS / Chakra UI  
+- **Logic:** JavaScript Regex for syllabus parsing  
+- **Storage:** LocalStorage (for MVP)  
+- **Version Control:** GitHub  
 
-### Adding Tasks Manually
+---
 
-1. Click "Add Task" on the Dashboard
-2. Fill in the task details:
-   - Title (required)
-   - Due Date (required)
-   - Due Time (required)
-   - Category (optional)
-   - Priority (Low/Medium/High)
-   - Weightage (0-100%)
-   - Effort (Low/Medium/High)
-   - Schedule Type (School/Work)
-3. Click "Save Task"
+## 🧑‍💻 Team Roles
+| Name | Role | Key Contribution |
+|------|------|------------------|
+| Member 1 | Frontend Developer | Dashboard & Calendar UI |
+| Member 2 | Backend Logic | Syllabus Parser & Regex extraction |
+| Member 3 | UX Designer | Theme, accessibility, and layout |
+| Member 4 | Presenter & Documentation | README, slides, and GitHub organization |
 
-### Parsing Syllabus
+---
 
-1. Click "Parse Syllabus" on the Dashboard
-2. Paste your syllabus text (example format):
-   ```
-   Assignment 1 is due on Nov 10
-   Lab 2 due Nov 15
-   Quiz 1 on Dec 1
-   Project submission by Dec 20
-   ```
-3. Click "Parse Text"
-4. Review and edit the parsed tasks:
-   - Add category information
-   - Adjust priority levels
-   - Set weightage percentages
-   - Configure effort estimates
-5. Click "Add to Calendar" to save all tasks
+## 🧾 Deliverables
+- ✅ Usable program (MVP)
+- ✅ GitHub repository with commit history
+- ✅ User guide for operation
+- ✅ 10-minute presentation covering:
+  - Introduction  
+  - Methodology  
+  - Features  
+  - Issues encountered  
 
-### Viewing Tasks
+---
 
-- **Dashboard Tab**: Shows tasks due in the next 7 days
-  - Sort by Due Date, Priority, or Weightage
-  - Tasks display with color-coded priority badges
-  - Delete tasks with the trash icon
+## ⚡ Future Enhancements (Post-MVP)
+- Notifications for upcoming deadlines  
+- Study time recommendations based on workload  
+- Sync with Google Calendar  
+- Task completion analytics  
 
-- **Calendar Tab**: Visual month view
-  - Blue dots indicate dates with tasks
-  - Click any date to see tasks for that day
-  - Navigate between months using arrows
-
-### Dark/Light Mode
-
-Click the moon/sun icon in the header to toggle between dark and light themes.
-
-## Data Structure
-
-Tasks are stored with the following structure:
-
-```javascript
-{
-  id: string,           // Unique identifier
-  title: string,        // Task name
-  dueDate: string,      // YYYY-MM-DD format
-  dueTime: string,      // 24-hour format (HH:MM)
-  priority: string,     // "High", "Medium", or "Low"
-  weightage: number,    // 0-100
-  effort: string,       // "High", "Medium", or "Low"
-  category: string,     // e.g., "ENPE 200"
-  scheduleType: string  // "School" or "Work"
-}
-```
-
-## Local Storage
-
-All tasks are automatically saved to browser local storage under the key `studentPlannerTasks`. Data persists across browser sessions but is device-specific.
-
-## Building for Production
-
-```bash
-npm run build
-```
-
-This creates an optimized production build in the `build/` directory.
-
-## Browser Compatibility
-
-Works on all modern browsers that support:
-- ES6+ JavaScript
-- Local Storage API
-- CSS Grid and Flexbox
-
-## License
-
-MIT
-
-## Credits
-
-Built for a hackathon to help students reduce stress and manage their workload effectively.
+---
