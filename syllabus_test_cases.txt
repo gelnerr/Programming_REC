@@ -1,0 +1,225 @@
+==========================================
+TEST CASE 1: Standard Format (CS 101)
+==========================================
+CS 101 - Introduction to Computer Science
+Course Schedule and Assignments
+
+ASSIGNMENTS:
+Assignment 1: Basic Programming Concepts due November 10th (15%)
+Assignment 2: Data Structures due November 25 (20%)
+Assignment 3: Algorithms and Complexity due December 5 (25%)
+
+LABS:
+Lab 1 on Oct 15
+Lab 2 due October 22nd
+Lab 3: Advanced Topics due Nov 1 (10%)
+
+QUIZZES:
+Quiz 1 on September 20
+Quiz 2 due Oct 10th (5%)
+Quiz 3: Midterm Review on November 8 (5%)
+
+PROJECTS:
+Project 1: Web Application due December 1st (30%)
+Project 2: Final Project by December 15 (40%)
+
+EXAMS:
+Midterm Exam on October 30 (20%)
+Final Exam: December 20 (30%)
+
+OTHER:
+Presentation: Research Topic due November 18 (10%)
+Report: Case Study Analysis by December 12 (15%)
+Homework 1 on Sep 5
+HW 2 due September 12th
+
+
+==========================================
+TEST CASE 2: Compact Format (MATH 200)
+==========================================
+MATH 200 - Calculus II
+
+Assignments due: Assignment 1 - Jan 15 (10%), Assignment 2 - Jan 22 (10%), Assignment 3 - Feb 5 (15%)
+Lab 1: Feb 10 (5%), Lab 2: Feb 17 (5%), Lab 3: Feb 24 (5%)
+Quiz 1 on January 25 (5%), Quiz 2 on February 14 (5%)
+Midterm: March 1st (25%)
+Final Exam on April 15 (30%)
+
+
+==========================================
+TEST CASE 3: Detailed Format (PHYS 301)
+==========================================
+PHYS 301 - Quantum Mechanics
+Spring 2024
+
+COURSEWORK SCHEDULE:
+
+Assignment #1: Wave Functions and Probability
+Due Date: February 3rd, 2024
+Weight: 12%
+
+Assignment #2: Schrödinger Equation
+Due: February 17, 2024
+Weightage: 12%
+
+Lab Experiment 1: Double Slit Experiment
+Due on February 10
+Weight: 8%
+
+Lab Experiment 2: Quantum Tunneling
+Due: February 24
+Weight: 8%
+
+Quiz 1: Basic Concepts
+Date: February 7
+Weight: 5%
+
+Quiz 2: Advanced Topics
+On: February 21
+Weight: 5%
+
+Project: Quantum Computing Simulation
+Deliverable by March 15
+Weight: 20%
+
+Mid-term Examination
+Scheduled: March 5
+Weight: 15%
+
+Final Examination
+Date: April 20
+Weight: 18%
+
+
+==========================================
+TEST CASE 4: Business Course (BUS 450)
+==========================================
+BUS 450 - Strategic Management
+
+Deliverables:
+- Report 1: Market Analysis due Nov 5 (20%)
+- Report 2: Competitive Strategy by Nov 19 (20%)
+- Presentation: Business Plan on Dec 3 (15%)
+- Final Project: Strategic Plan due Dec 17 (30%)
+
+Assessments:
+Test 1: October 15 (10%)
+Test 2: November 12 (10%)
+
+
+==========================================
+TEST CASE 5: Engineering Course (ENSE 354)
+==========================================
+ENSE 354 - Software Engineering
+
+Homework assignments:
+HW 1: Requirements Analysis - Sep 20 (8%)
+HW 2: System Design - Oct 4 (8%)
+HW 3: Implementation - Oct 18 (8%)
+HW 4: Testing - Nov 1 (8%)
+
+Labs:
+Lab 1 on September 15 (5%)
+Lab 2 due September 29 (5%)
+Lab 3: October 13 (5%)
+Lab 4: October 27 (5%)
+
+Project Phase 1: Requirements and Design
+Due: November 8 (15%)
+
+Project Phase 2: Implementation
+Due: November 22 (15%)
+
+Midterm Exam: October 25 (10%)
+
+Final Exam: December 10 (20%)
+
+
+==========================================
+TEST CASE 6: Literature Course (ENGL 201)
+==========================================
+ENGL 201 - Modern Literature
+
+Essays:
+Essay 1: Character Analysis due January 20 (15%)
+Essay 2: Theme Exploration by February 10 (15%)
+Essay 3: Critical Analysis on March 5 (20%)
+
+Presentations:
+Presentation 1: Author Study - Jan 30 (10%)
+Presentation 2: Literary Theory - Feb 25 (10%)
+
+Final Paper: Research Essay
+Due: March 20 (30%)
+
+
+==========================================
+TEST CASE 7: Mixed Format (CHEM 250)
+==========================================
+CHEM 250 - Organic Chemistry
+
+Lab Reports:
+Lab Report 1 due Jan 18 (10%)
+Lab Report 2 on Jan 25 (10%)
+Lab Report 3: Feb 1 (10%)
+Lab Report 4 by Feb 8 (10%)
+
+Assignments:
+Assignment 1 - January 22 (5%)
+Assignment 2 - February 5 (5%)
+Assignment 3 - February 19 (5%)
+
+Quizzes:
+Quiz 1: Jan 15 (3%)
+Quiz 2: Jan 29 (3%)
+Quiz 3: Feb 12 (3%)
+Quiz 4: Feb 26 (3%)
+
+Midterm 1: February 15 (15%)
+Midterm 2: March 10 (15%)
+Final Exam: April 5 (25%)
+
+
+==========================================
+TEST CASE 8: Short Format (HIST 100)
+==========================================
+HIST 100 - World History
+
+Assignment 1 due Nov 10 (25%)
+Assignment 2 on Nov 24 (25%)
+Midterm Exam: Dec 5 (25%)
+Final Exam December 15 (25%)
+
+
+==========================================
+TEST CASE 9: With Course Code in Header
+==========================================
+Course: CS 350
+Subject: Data Structures and Algorithms
+
+Assignment 1: Arrays and Lists - September 15 (10%)
+Assignment 2: Trees and Graphs - September 29 (10%)
+Assignment 3: Sorting Algorithms - October 13 (15%)
+Lab 1 on Sep 10 (5%)
+Lab 2: Sep 24 (5%)
+Quiz 1: October 1 (5%)
+Project: Algorithm Implementation due October 20 (25%)
+Midterm Exam on October 25 (15%)
+Final Exam: November 15 (20%)
+
+
+==========================================
+TEST CASE 10: No Course Code (Generic)
+==========================================
+Introduction to Psychology
+
+Homework 1: Research Methods due Jan 15 (10%)
+Homework 2: Cognitive Psychology on Jan 29 (10%)
+Lab 1: Behavioral Observation - Feb 5 (5%)
+Lab 2: Memory Experiment - Feb 12 (5%)
+Quiz 1: Jan 22 (5%)
+Quiz 2: Feb 19 (5%)
+Project: Case Study Analysis by March 1 (25%)
+Midterm: February 26 (20%)
+Final Exam: March 20 (25%)
+
