@@ -7,7 +7,7 @@ Our task was to design a **minimum viable product (MVP)** that helps students ef
 ---
 
 ## 💡 Solution Overview
-Our solution, **Syllabyte**, is an intelligent planner that automates task management for students.
+Our solution, <a href="https://syllabyte.netlify.app/">**Syllabyte**</a>, is an intelligent planner that automates task management for students.
 
 Instead of manually entering dozens of deadlines from multiple syllabi, students can **paste their syllabus text directly into the app**, and our parser automatically extracts key dates (assignments, labs, quizzes, exams) and adds them to a clean, visual calendar.
 
@@ -31,51 +31,22 @@ Instead of manually entering dozens of deadlines from multiple syllabi, students
 
 ---
 
-## 🗺️ Story Map Overview
-### Epics
-- **Scheduling** – Calendar editing and priority task creation  
-- **Syllabus Parser** – Text parsing and automated task detection  
-- **Dashboard Overview** – Daily/weekly view and upcoming summary  
-- **Accessibility** – Customizable appearance and dark/light mode  
-
-### MVP Highlights
-- Ability to input tasks at specific dates and times  
-- Smart priority assignment (based on effort and urgency)  
-- Regex-based syllabus parsing  
-- Automatic weekly task generation  
-- Color-coded categorization  
-- Minimalist task display  
-
----
-
 ## ⚙️ Tech Stack
 - **Frontend:** React.js / TypeScript  
 - **Styling:** TailwindCSS / Chakra UI  
 - **Logic:** JavaScript Regex for syllabus parsing  
 - **Storage:** LocalStorage (for MVP)  
-- **Version Control:** GitHub  
+- **Version Control:** GitHub
+- **LLMs Used:**: ChatGPT, Google Gemini, Claude Code
 
 ---
 
 ## 🧑‍💻 Team Roles
 | Name | Role | Key Contribution |
 |------|------|------------------|
-| Member 1 | Frontend Developer | Dashboard & Calendar UI |
-| Member 2 | Backend Logic | Syllabus Parser & Regex extraction |
-| Member 3 | UX Designer | Theme, accessibility, and layout |
-| Member 4 | Presenter & Documentation | README, slides, and GitHub organization |
-
----
-
-## 🧾 Deliverables
-- ✅ Usable program (MVP)
-- ✅ GitHub repository with commit history
-- ✅ User guide for operation
-- ✅ 10-minute presentation covering:
-  - Introduction  
-  - Methodology  
-  - Features  
-  - Issues encountered  
+| Shivam Soni | Front+Backend Developer | Dashboard & Calendar UI, Syllabus Parser & Regex extraction |
+| Luka Dundjerovic | UI Design & Research | Slides, Prototype and Information |
+| Glen Issac | Documentation & Web Hosting | README, slides, Github and Netlify |
 
 ---
 
