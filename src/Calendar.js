@@ -6,7 +6,7 @@ import 'react-calendar/dist/Calendar.css';
 import TaskCard from './TaskCard';
 import './CalendarStyles.css';
 
-function Calendar({ tasks }) {
+function Calendar({ tasks, setTasks }) {
   const [selectedDate, setSelectedDate] = useState(new Date());
 
   // Helper function to format date to YYYY-MM-DD
@@ -48,12 +48,6 @@ function Calendar({ tasks }) {
   };
 
   const tasksForSelectedDate = getTasksForSelectedDate();
-
-  // Dummy setTasks function for TaskCard (since we can't modify from Calendar view)
-  // In a real app, you might want to pass the actual setTasks from App.js
-  const handleSetTasks = () => {
-    console.warn('Task modification not supported in Calendar view');
-  };
 
   return (
     <VStack spacing={6} align="stretch">
@@ -107,7 +101,7 @@ function Calendar({ tasks }) {
         ) : (
           <VStack spacing={4} align="stretch">
             {tasksForSelectedDate.map((task) => (
-              <TaskCard key={task.id} task={task} setTasks={handleSetTasks} />
+              <TaskCard key={task.id} task={task} setTasks={setTasks} />
             ))}
           </VStack>
         )}
