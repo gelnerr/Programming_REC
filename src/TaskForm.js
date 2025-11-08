@@ -107,14 +107,14 @@ function TaskForm({ setTasks, isOpen, onClose }) {
               />
             </FormControl>
 
-            {/* Category */}
+            {/* Course Name */}
             <FormControl>
-              <FormLabel>Category</FormLabel>
+              <FormLabel>Course Name</FormLabel>
               <Input
                 name="category"
                 value={formData.category}
                 onChange={handleChange}
-                placeholder="e.g., ENPE 200"
+                placeholder="e.g., ENSE 354"
               />
             </FormControl>
 

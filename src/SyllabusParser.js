@@ -242,7 +242,7 @@ function SyllabusParser({ setTasks, isOpen, onClose }) {
                       {/* Editable Fields */}
                       <HStack spacing={2}>
                         <FormControl>
-                          <FormLabel fontSize="sm">Category</FormLabel>
+                          <FormLabel fontSize="sm">Course Name</FormLabel>
                           <Input
                             size="sm"
                             value={task.category}
@@ -253,7 +253,7 @@ function SyllabusParser({ setTasks, isOpen, onClose }) {
                                 e.target.value
                               )
                             }
-                            placeholder="e.g., ENPE 200"
+                            placeholder="e.g., ENSE 354"
                           />
                         </FormControl>
 
