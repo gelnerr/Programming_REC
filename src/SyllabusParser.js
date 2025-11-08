@@ -35,7 +35,7 @@ function SyllabusParser({ setTasks, isOpen, onClose }) {
 
     // Enhanced regex pattern to match various task types, weightage, and date formats
     const regex =
-      /(Assignment|Lab|Quiz|Project|Midterm|Mid-term|Final\s*Exam|Test|Exam|Presentation|Deliverable|Report|Homework|HW)[\s\d:#-]*[:\s]*(.*?)(?:due|on|by|:|-)?\s*(January|February|March|April|May|June|July|August|September|October|November|December|Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Sept|Oct|Nov|Dec)[\s.,]*(\d{1,2})(?:st|nd|rd|th)?/gi;
+      /\b(Assignment|Lab|Quiz|Project|Midterm|Mid-term|Final\s*Exam|Test|Exam|Presentation|Deliverable|Report|Homework|HW)\b[\s\d:#-]*[:\s]*(.*?)(?:due|on|by|:|-)?\s*(January|February|March|April|May|June|July|August|September|October|November|December|Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Sept|Oct|Nov|Dec)[\s.,]*(\d{1,2})(?:st|nd|rd|th)?/gi;
 
     const matches = [...text.matchAll(regex)];
 
