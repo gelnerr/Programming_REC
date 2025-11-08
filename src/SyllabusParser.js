@@ -33,9 +33,9 @@ function SyllabusParser({ setTasks, isOpen, onClose }) {
       return;
     }
 
-    // Regex pattern to match assignment types and dates
+    // Enhanced regex pattern to match various task types, weightage, and date formats
     const regex =
-      /(Assignment|Lab|Quiz|Project|Midterm|Final Exam)[\s\d:]*.*?(due|on|by)[\s:]*(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[\s.]*(\d{1,2})/gi;
+      /(Assignment|Lab|Quiz|Project|Midterm|Mid-term|Final\s*Exam|Test|Exam|Presentation|Deliverable|Report|Homework|HW)[\s\d:#-]*[:\s]*(.*?)(?:due|on|by|:|-)?\s*(January|February|March|April|May|June|July|August|September|October|November|December|Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Sept|Oct|Nov|Dec)[\s.,]*(\d{1,2})(?:st|nd|rd|th)?/gi;
 
     const matches = [...text.matchAll(regex)];
 
@@ -44,15 +44,41 @@ function SyllabusParser({ setTasks, isOpen, onClose }) {
       return;
     }
 
+    // Helper to normalize month names
+    const normalizeMonth = (month) => {
+      const monthMap = {
+        'January': 'Jan', 'February': 'Feb', 'March': 'Mar', 'April': 'Apr',
+        'May': 'May', 'June': 'Jun', 'July': 'Jul', 'August': 'Aug',
+        'September': 'Sep', 'Sept': 'Sep', 'October': 'Oct', 'November': 'Nov', 'December': 'Dec'
+      };
+      return monthMap[month] || month;
+    };
+
+    // Helper to extract weightage from description
+    const extractWeightage = (text) => {
+      const weightageMatch = text.match(/(\d{1,3})%/);
+      return weightageMatch ? parseInt(weightageMatch[1], 10) : 0;
+    };
+
     // Create parsed task objects
     const tasks = matches.map((match, index) => {
-      const taskType = match[1]; // Assignment, Lab, etc.
-      const month = match[3]; // Jan, Feb, etc.
+      const taskType = match[1].trim(); // Assignment, Lab, Quiz, etc.
+      const description = match[2].trim(); // Additional description
+      const month = normalizeMonth(match[3]); // Month name
       const day = match[4]; // Day number
 
-      // Extract more details from the full match if available
+      // Extract weightage from the full match or description
       const fullMatch = match[0];
-      const title = fullMatch.split(/(due|on|by)/i)[0].trim();
+      const weightage = extractWeightage(fullMatch);
+
+      // Build a meaningful title
+      let title = taskType;
+      if (description && description.length > 0 && description.length < 50) {
+        // Only add description if it's not too long
+        title = `${taskType} ${description}`;
+      }
+      // Clean up the title - remove weightage percentage and extra symbols
+      title = title.replace(/\d+%/g, '').replace(/[:\-%]+$/, '').trim();
 
       return {
         tempId: index + 1,
@@ -60,7 +86,7 @@ function SyllabusParser({ setTasks, isOpen, onClose }) {
         month: month,
         day: day,
         priority: 'Medium',
-        weightage: 0,
+        weightage: weightage,
         effort: 'Medium',
         category: '',
       };
@@ -100,11 +126,23 @@ function SyllabusParser({ setTasks, isOpen, onClose }) {
     };
 
     // Convert parsed tasks to full task objects
-    const currentYear = new Date().getFullYear();
+    const today = new Date();
+    const currentYear = today.getFullYear();
+
     const newTasks = parsedTasks.map((task) => {
       const monthNum = monthMap[task.month];
       const dayPadded = task.day.padStart(2, '0');
-      const dueDate = `${currentYear}-${monthNum}-${dayPadded}`;
+
+      // Smart year detection: if date has passed this year, use next year
+      let year = currentYear;
+      const taskDate = new Date(currentYear, parseInt(monthNum) - 1, parseInt(task.day));
+
+      // If the task date is in the past, assume it's for next year
+      if (taskDate < today) {
+        year = currentYear + 1;
+      }
+
+      const dueDate = `${year}-${monthNum}-${dayPadded}`;
 
       return {
         id: new Date().getTime().toString() + '-' + task.tempId,
@@ -121,6 +159,11 @@ function SyllabusParser({ setTasks, isOpen, onClose }) {
 
     // Add all new tasks to the main tasks array
     setTasks((prevTasks) => [...prevTasks, ...newTasks]);
+
+    // Show success message
+    const taskCount = newTasks.length;
+    const message = `Successfully added ${taskCount} task${taskCount > 1 ? 's' : ''}! Check the Calendar tab to see all your tasks.`;
+    alert(message);
 
     // Reset and close
     setText('');
@@ -149,7 +192,7 @@ function SyllabusParser({ setTasks, isOpen, onClose }) {
           {step === 1 ? (
             // Step 1: Input text
             <VStack spacing={4} align="stretch">
-              <Text fontSize="sm" color="gray.600">
+              <Text fontSize="sm" color="gray.600" _dark={{ color: 'gray.400' }}>
                 Paste your syllabus text below. We'll extract assignments, labs,
                 quizzes, projects, and exams with their due dates.
               </Text>
@@ -172,14 +215,15 @@ function SyllabusParser({ setTasks, isOpen, onClose }) {
                     borderWidth="1px"
                     borderRadius="md"
                     p={4}
-                    bg="gray.50"
+                    bg="whiteAlpha.50"
+                    _dark={{ bg: 'whiteAlpha.100' }}
                   >
                     <VStack spacing={3} align="stretch">
                       {/* Parsed Title and Date */}
                       <HStack justify="space-between">
                         <VStack align="start" spacing={0}>
                           <Text fontWeight="bold">{task.title}</Text>
-                          <Text fontSize="sm" color="gray.600">
+                          <Text fontSize="sm" color="gray.600" _dark={{ color: 'gray.400' }}>
                             Parsed Date: {task.month} {task.day}
                           </Text>
                         </VStack>
