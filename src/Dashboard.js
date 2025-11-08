@@ -84,6 +84,10 @@ function Dashboard({ tasks, setTasks, viewMode = 'overview' }) {
       return tasks.filter((task) => task.dueDate === todayString);
     }
 
+    if (viewMode === 'all') {
+      return tasks; // Return all tasks without filtering
+    }
+
     const sevenDaysFromNow = new Date();
     sevenDaysFromNow.setDate(today.getDate() + 7);
     sevenDaysFromNow.setHours(23, 59, 59, 999);

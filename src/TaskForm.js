@@ -47,6 +47,7 @@ function TaskForm({ setTasks, isOpen, onClose }) {
       ...formData,
       id: new Date().getTime().toString(),
       weightage: Number(formData.weightage),
+      completed: false,
     };
 
     // Add to tasks array

@@ -27,7 +27,8 @@ import {
   MdDashboard,
   MdToday,
   MdInsertChart,
-  MdSettings
+  MdSettings,
+  MdList
 } from 'react-icons/md';
 import Dashboard from './Dashboard';
 import Calendar from './Calendar';
@@ -93,6 +94,7 @@ function App() {
               {activeView === 'overview' && <Dashboard tasks={tasks} setTasks={setTasks} />}
               {activeView === 'today' && <Dashboard tasks={tasks} setTasks={setTasks} viewMode="today" />}
               {activeView === 'week' && <Dashboard tasks={tasks} setTasks={setTasks} viewMode="week" />}
+              {activeView === 'all' && <Dashboard tasks={tasks} setTasks={setTasks} viewMode="all" />}
               {activeView === 'calendar' && <Calendar tasks={tasks} setTasks={setTasks} />}
               {activeView === 'analytics' && <Analytics tasks={tasks} />}
               {activeView === 'settings' && <Settings />}
@@ -111,6 +113,7 @@ function Sidebar({ activeView, setActiveView }) {
     { id: 'overview', label: 'Overview', icon: MdDashboard },
     { id: 'today', label: 'Today', icon: MdToday },
     { id: 'week', label: 'This Week', icon: TimeIcon },
+    { id: 'all', label: 'All Tasks', icon: MdList },
     { id: 'calendar', label: 'Calendar', icon: CalendarIcon },
     { id: 'analytics', label: 'Analytics', icon: MdInsertChart },
     { id: 'settings', label: 'Settings', icon: MdSettings },

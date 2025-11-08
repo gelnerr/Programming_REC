@@ -7,12 +7,21 @@ import {
   IconButton,
   Badge,
   Text,
+  Checkbox,
 } from '@chakra-ui/react';
 import { DeleteIcon } from '@chakra-ui/icons';
 
 function TaskCard({ task, setTasks }) {
   const handleDelete = () => {
     setTasks((prev) => prev.filter((t) => t.id !== task.id));
+  };
+
+  const handleToggleComplete = () => {
+    setTasks((prev) =>
+      prev.map((t) =>
+        t.id === task.id ? { ...t, completed: !t.completed } : t
+      )
+    );
   };
 
   // Priority color scheme
@@ -37,11 +46,30 @@ function TaskCard({ task, setTasks }) {
       shadow="md"
       _hover={{ shadow: 'lg' }}
       transition="all 0.2s"
+      opacity={task.completed ? 0.6 : 1}
+      bg={task.completed ? 'gray.50' : 'white'}
+      _dark={{
+        bg: task.completed ? 'gray.700' : 'gray.800',
+      }}
     >
       <VStack align="stretch" spacing={3}>
-        {/* Title and Delete Button */}
+        {/* Checkbox, Title and Delete Button */}
         <HStack justify="space-between">
-          <Heading size="md">{task.title}</Heading>
+          <HStack flex="1" spacing={3}>
+            <Checkbox
+              isChecked={task.completed || false}
+              onChange={handleToggleComplete}
+              colorScheme="green"
+              size="lg"
+            />
+            <Heading
+              size="md"
+              textDecoration={task.completed ? 'line-through' : 'none'}
+              color={task.completed ? 'gray.500' : 'inherit'}
+            >
+              {task.title}
+            </Heading>
+          </HStack>
           <IconButton
             icon={<DeleteIcon />}
             onClick={handleDelete}

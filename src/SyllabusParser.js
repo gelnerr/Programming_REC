@@ -155,6 +155,7 @@ function SyllabusParser({ setTasks, isOpen, onClose }) {
         effort: task.effort,
         category: task.category,
         scheduleType: 'School', // Default to School
+        completed: false,
       };
     });
 
