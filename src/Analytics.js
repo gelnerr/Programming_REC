@@ -18,7 +18,7 @@ function Analytics({ tasks }) {
   const analytics = useMemo(() => {
     const now = new Date();
     const total = tasks.length;
-    const completed = 0; // We'll track this later
+    const completed = tasks.filter((t) => t.completed).length;
     const pending = total - completed;
 
     // Tasks by priority
