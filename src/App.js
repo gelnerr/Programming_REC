@@ -21,11 +21,8 @@ import {
   SunIcon,
   SearchIcon,
   CalendarIcon,
-  TimeIcon,
 } from '@chakra-ui/icons';
 import {
-  MdDashboard,
-  MdToday,
   MdInsertChart,
   MdSettings,
   MdList
