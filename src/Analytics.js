@@ -9,10 +9,8 @@ import {
   StatLabel,
   StatNumber,
   StatHelpText,
-  StatArrow,
   Progress,
   SimpleGrid,
-  Divider,
 } from '@chakra-ui/react';
 
 function Analytics({ tasks }) {

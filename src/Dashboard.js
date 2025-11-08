@@ -12,9 +12,6 @@ import {
   Stat,
   StatLabel,
   StatNumber,
-  StatHelpText,
-  Icon,
-  Progress,
   Badge,
 } from '@chakra-ui/react';
 import { AddIcon, TimeIcon } from '@chakra-ui/icons';

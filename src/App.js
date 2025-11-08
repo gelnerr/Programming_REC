@@ -26,7 +26,6 @@ import {
 import {
   MdDashboard,
   MdToday,
-  MdDateRange,
   MdInsertChart,
   MdSettings
 } from 'react-icons/md';
@@ -107,7 +106,6 @@ function App() {
 
 // Sidebar Component
 function Sidebar({ activeView, setActiveView }) {
-  const { colorMode } = useColorMode();
 
   const navItems = [
     { id: 'overview', label: 'Overview', icon: MdDashboard },
