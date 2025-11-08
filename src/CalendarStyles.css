@@ -1,4 +1,4 @@
-/* Custom styles for react-calendar */
+/* Custom styles for react-calendar with dark mode support */
 .calendar-container {
   display: flex;
   justify-content: center;
@@ -8,44 +8,147 @@
 .custom-calendar {
   width: 100%;
   max-width: 800px;
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--chakra-colors-gray-200);
   border-radius: 8px;
   padding: 16px;
   font-family: inherit;
+  background-color: var(--chakra-colors-chakra-body-bg);
 }
 
-.custom-calendar .react-calendar__tile {
-  padding: 12px 8px;
-  position: relative;
-  height: 80px;
+/* Fix text color for all calendar elements */
+.custom-calendar,
+.custom-calendar *,
+.custom-calendar button,
+.custom-calendar abbr {
+  color: var(--chakra-colors-chakra-body-text) !important;
 }
 
-.custom-calendar .react-calendar__tile--active {
-  background-color: #3182ce;
-  color: white;
-}
-
-.custom-calendar .react-calendar__tile--active:enabled:hover {
-  background-color: #2c5aa0;
-}
-
-.custom-calendar .react-calendar__tile:enabled:hover {
-  background-color: #edf2f7;
-  border-radius: 4px;
-}
-
-.custom-calendar .react-calendar__month-view__days__day--weekend {
-  color: #e53e3e;
+/* Navigation buttons */
+.custom-calendar .react-calendar__navigation {
+  margin-bottom: 12px;
 }
 
 .custom-calendar .react-calendar__navigation button {
   font-size: 16px;
   font-weight: 600;
   min-width: 44px;
+  color: var(--chakra-colors-chakra-body-text) !important;
+  background-color: transparent;
 }
 
 .custom-calendar .react-calendar__navigation button:enabled:hover,
 .custom-calendar .react-calendar__navigation button:enabled:focus {
-  background-color: #edf2f7;
+  background-color: var(--chakra-colors-gray-100);
   border-radius: 4px;
+}
+
+/* Week day labels */
+.custom-calendar .react-calendar__month-view__weekdays {
+  font-weight: 600;
+  font-size: 14px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.custom-calendar .react-calendar__month-view__weekdays__weekday {
+  padding: 8px;
+}
+
+.custom-calendar .react-calendar__month-view__weekdays__weekday abbr {
+  text-decoration: none;
+  color: var(--chakra-colors-gray-600) !important;
+}
+
+/* Day tiles */
+.custom-calendar .react-calendar__tile {
+  padding: 12px 8px;
+  position: relative;
+  height: 80px;
+  background-color: transparent;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--chakra-colors-chakra-body-text) !important;
+}
+
+.custom-calendar .react-calendar__tile:enabled:hover {
+  background-color: var(--chakra-colors-blue-50);
+  cursor: pointer;
+}
+
+/* Today's date */
+.custom-calendar .react-calendar__tile--now {
+  background-color: var(--chakra-colors-yellow-100);
+  font-weight: 700;
+}
+
+.custom-calendar .react-calendar__tile--now:enabled:hover {
+  background-color: var(--chakra-colors-yellow-200);
+}
+
+/* Selected/Active date */
+.custom-calendar .react-calendar__tile--active {
+  background-color: var(--chakra-colors-blue-500) !important;
+  color: white !important;
+}
+
+.custom-calendar .react-calendar__tile--active:enabled:hover {
+  background-color: var(--chakra-colors-blue-600) !important;
+}
+
+/* Weekend styling */
+.custom-calendar .react-calendar__month-view__days__day--weekend {
+  color: var(--chakra-colors-red-500) !important;
+}
+
+/* Neighboring month dates */
+.custom-calendar .react-calendar__month-view__days__day--neighboringMonth {
+  color: var(--chakra-colors-gray-400) !important;
+  opacity: 0.5;
+}
+
+/* Dark mode specific overrides */
+@media (prefers-color-scheme: dark) {
+  .custom-calendar {
+    border-color: var(--chakra-colors-gray-600);
+  }
+
+  .custom-calendar .react-calendar__navigation button:enabled:hover,
+  .custom-calendar .react-calendar__navigation button:enabled:focus {
+    background-color: var(--chakra-colors-gray-700);
+  }
+
+  .custom-calendar .react-calendar__tile:enabled:hover {
+    background-color: var(--chakra-colors-gray-700);
+  }
+
+  .custom-calendar .react-calendar__tile--now {
+    background-color: var(--chakra-colors-yellow-700);
+  }
+
+  .custom-calendar .react-calendar__tile--now:enabled:hover {
+    background-color: var(--chakra-colors-yellow-600);
+  }
+}
+
+/* Chakra UI dark mode class support */
+.chakra-ui-dark .custom-calendar {
+  border-color: var(--chakra-colors-gray-600);
+}
+
+.chakra-ui-dark .custom-calendar .react-calendar__navigation button:enabled:hover,
+.chakra-ui-dark .custom-calendar .react-calendar__navigation button:enabled:focus {
+  background-color: var(--chakra-colors-gray-700);
+}
+
+.chakra-ui-dark .custom-calendar .react-calendar__tile:enabled:hover {
+  background-color: var(--chakra-colors-gray-700);
+}
+
+.chakra-ui-dark .custom-calendar .react-calendar__tile--now {
+  background-color: var(--chakra-colors-yellow-700);
+}
+
+.chakra-ui-dark .custom-calendar .react-calendar__tile--now:enabled:hover {
+  background-color: var(--chakra-colors-yellow-600);
 }

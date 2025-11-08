@@ -34,8 +34,8 @@ function TaskCard({ task, setTasks }) {
       borderWidth="1px"
       borderRadius="lg"
       p={4}
-      shadow="sm"
-      _hover={{ shadow: 'md' }}
+      shadow="md"
+      _hover={{ shadow: 'lg' }}
       transition="all 0.2s"
     >
       <VStack align="stretch" spacing={3}>

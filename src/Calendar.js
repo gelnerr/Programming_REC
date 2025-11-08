@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Box, VStack, Heading, Text } from '@chakra-ui/react';
+import { Box, VStack, Heading, Text, Icon } from '@chakra-ui/react';
+import { CheckCircleIcon } from '@chakra-ui/icons';
 import ReactCalendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import TaskCard from './TaskCard';
@@ -27,12 +28,13 @@ function Calendar({ tasks }) {
     if (view === 'month' && dateHasTasks(date)) {
       return (
         <Box
-          w="6px"
-          h="6px"
+          w="8px"
+          h="8px"
           bg="blue.500"
           borderRadius="full"
           mx="auto"
           mt={1}
+          boxShadow="0 0 4px rgba(66, 153, 225, 0.6)"
         />
       );
     }
@@ -56,7 +58,12 @@ function Calendar({ tasks }) {
   return (
     <VStack spacing={6} align="stretch">
       {/* Calendar */}
-      <Box className="calendar-container">
+      <Box
+        className="calendar-container"
+        bg="chakra-body-bg"
+        borderRadius="lg"
+        p={4}
+      >
         <ReactCalendar
           onChange={setSelectedDate}
           value={selectedDate}
@@ -67,26 +74,36 @@ function Calendar({ tasks }) {
 
       {/* Tasks for selected date */}
       <Box>
-        <Heading size="md" mb={4}>
-          Tasks for {selectedDate.toLocaleDateString('en-US', {
-            weekday: 'long',
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-          })}
-        </Heading>
+        <VStack align="start" spacing={1} mb={4}>
+          <Heading size="md">Tasks for Selected Date</Heading>
+          <Text fontSize="sm" color="gray.600">
+            {selectedDate.toLocaleDateString('en-US', {
+              weekday: 'long',
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric',
+            })}
+          </Text>
+        </VStack>
 
         {tasksForSelectedDate.length === 0 ? (
-          <Box
-            textAlign="center"
-            py={8}
+          <VStack
+            spacing={3}
+            py={12}
             px={6}
             borderWidth="1px"
             borderRadius="lg"
             borderStyle="dashed"
+            textAlign="center"
           >
-            <Text color="gray.600">No tasks for this day</Text>
-          </Box>
+            <Icon as={CheckCircleIcon} boxSize={10} color="green.400" />
+            <Text color="gray.600" fontSize="lg">
+              No tasks for this day
+            </Text>
+            <Text color="gray.500" fontSize="sm">
+              Enjoy your free time! 🎉
+            </Text>
+          </VStack>
         ) : (
           <VStack spacing={4} align="stretch">
             {tasksForSelectedDate.map((task) => (
