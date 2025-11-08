@@ -18,22 +18,21 @@ import Dashboard from './Dashboard';
 import Calendar from './Calendar';
 
 function App() {
-  const [tasks, setTasks] = useState([]);
-
-  // Effect 1: Load tasks from local storage on mount
-  useEffect(() => {
+  const [tasks, setTasks] = useState(() => {
+    // Load initial state from localStorage
     const storedTasks = localStorage.getItem('studentPlannerTasks');
     if (storedTasks) {
       try {
-        const parsedData = JSON.parse(storedTasks);
-        setTasks(parsedData);
+        return JSON.parse(storedTasks);
       } catch (error) {
         console.error('Error parsing stored tasks:', error);
+        return [];
       }
     }
-  }, []);
+    return [];
+  });
 
-  // Effect 2: Save tasks to local storage whenever tasks change
+  // Save tasks to local storage whenever tasks change
   useEffect(() => {
     localStorage.setItem('studentPlannerTasks', JSON.stringify(tasks));
   }, [tasks]);
