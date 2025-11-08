@@ -160,10 +160,7 @@ function Dashboard({ tasks, setTasks }) {
         shadow="lg"
       >
         <Box position="relative" zIndex={1}>
-          <HStack spacing={3} mb={2}>
-            <Text fontSize="2xl">{quote.emoji}</Text>
-            <Heading size="md">Hello, Student!</Heading>
-          </HStack>
+          <Heading size="md" mb={2}>Hello, Student!</Heading>
           <Text fontSize="lg" fontStyle="italic" opacity={0.95}>
             "{quote.text}"
           </Text>
