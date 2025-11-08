@@ -127,6 +127,7 @@ function SyllabusParser({ setTasks, isOpen, onClose }) {
 
     // Convert parsed tasks to full task objects
     const today = new Date();
+    today.setHours(0, 0, 0, 0); // Normalize to midnight for fair comparison
     const currentYear = today.getFullYear();
 
     const newTasks = parsedTasks.map((task) => {
@@ -137,7 +138,7 @@ function SyllabusParser({ setTasks, isOpen, onClose }) {
       let year = currentYear;
       const taskDate = new Date(currentYear, parseInt(monthNum) - 1, parseInt(task.day));
 
-      // If the task date is in the past, assume it's for next year
+      // If the task date is in the past (before today), assume it's for next year
       if (taskDate < today) {
         year = currentYear + 1;
       }
