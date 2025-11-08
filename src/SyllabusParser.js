@@ -33,6 +33,25 @@ function SyllabusParser({ setTasks, isOpen, onClose }) {
       return;
     }
 
+    // Extract course name from the beginning of the text
+    const extractCourseName = (text) => {
+      // Look for common course code patterns: "CS 101", "ENSE 354", "MATH 200", etc.
+      const coursePattern = /^([A-Z]{2,6}\s*\d{3,4})/i;
+      const match = text.match(coursePattern);
+      if (match) {
+        return match[1].trim().toUpperCase();
+      }
+      // Also check for patterns like "Course: CS 101" or "CS101"
+      const altPattern = /(?:Course|Subject|Code)[:\s]*([A-Z]{2,6}\s*\d{3,4})|([A-Z]{2,6}\d{3,4})/i;
+      const altMatch = text.match(altPattern);
+      if (altMatch) {
+        return (altMatch[1] || altMatch[2]).trim().toUpperCase().replace(/([A-Z]{2,6})(\d{3,4})/, '$1 $2');
+      }
+      return '';
+    };
+
+    const defaultCourseName = extractCourseName(text);
+
     // Enhanced regex pattern to match various task types, weightage, and date formats
     const regex =
       /\b(Assignment|Lab|Quiz|Project|Midterm|Mid-term|Final\s*Exam|Test|Exam|Presentation|Deliverable|Report|Homework|HW)\b[\s\d:#-]*[:\s]*(.*?)(?:due|on|by|:|-)?\s*(January|February|March|April|May|June|July|August|September|October|November|December|Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Sept|Oct|Nov|Dec)[\s.,]*(\d{1,2})(?:st|nd|rd|th)?/gi;
@@ -54,10 +73,27 @@ function SyllabusParser({ setTasks, isOpen, onClose }) {
       return monthMap[month] || month;
     };
 
-    // Helper to extract weightage from description
-    const extractWeightage = (text) => {
-      const weightageMatch = text.match(/(\d{1,3})%/);
-      return weightageMatch ? parseInt(weightageMatch[1], 10) : 0;
+    // Helper to extract weightage from a line of text (searches wider context)
+    const extractWeightage = (matchText, fullText) => {
+      // First try to find weightage in the match itself
+      let weightageMatch = matchText.match(/(\d{1,3})%/);
+      if (weightageMatch) {
+        return parseInt(weightageMatch[1], 10);
+      }
+      
+      // If not found, search in the line containing the match
+      const lines = fullText.split('\n');
+      for (const line of lines) {
+        // Check if line contains part of the match (first 20 chars) and has a percentage
+        if (line.includes(matchText.substring(0, Math.min(20, matchText.length)))) {
+          weightageMatch = line.match(/(\d{1,3})%/);
+          if (weightageMatch) {
+            return parseInt(weightageMatch[1], 10);
+          }
+        }
+      }
+      
+      return 0;
     };
 
     // Create parsed task objects
@@ -67,9 +103,9 @@ function SyllabusParser({ setTasks, isOpen, onClose }) {
       const month = normalizeMonth(match[3]); // Month name
       const day = match[4]; // Day number
 
-      // Extract weightage from the full match or description
+      // Extract weightage from the line containing the match (wider context)
       const fullMatch = match[0];
-      const weightage = extractWeightage(fullMatch);
+      const weightage = extractWeightage(fullMatch, text);
 
       // Build a meaningful title
       let title = taskType;
@@ -88,7 +124,7 @@ function SyllabusParser({ setTasks, isOpen, onClose }) {
         priority: 'Medium',
         weightage: weightage,
         effort: 'Medium',
-        category: '',
+        category: defaultCourseName, // Use extracted course name as default
       };
     });
 
