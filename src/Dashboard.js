@@ -277,7 +277,7 @@ function Dashboard({ tasks, setTasks }) {
           borderRadius="lg"
           borderStyle="dashed"
         >
-          <Heading size="lg">Welcome! ☀️</Heading>
+          <Heading size="lg">Welcome!</Heading>
           <Text fontSize="lg" color="gray.600" _dark={{ color: 'gray.400' }} fontStyle="italic" maxW="md">
             "{quote.text}"
           </Text>
@@ -288,7 +288,7 @@ function Dashboard({ tasks, setTasks }) {
               colorScheme="green"
               onClick={onParserOpen}
               w="full"
-              leftIcon={<span style={{ fontSize: '1.2em' }}>✨</span>}
+              leftIcon={<span style={{ fontSize: '1.2em' }}></span>}
             >
               Parse My Syllabus
             </Button>
