@@ -27,19 +27,19 @@ const getMotivationalQuote = () => {
 
   const quotes = {
     morning: [
-      { text: "Good morning! Start strong today.", emoji: "☀️" },
-      { text: "Rise and shine! You've got this!", emoji: "🌅" },
-      { text: "Every morning is a fresh start.", emoji: "🌄" }
+      { text: "Good morning! Start strong today." },
+      { text: "Rise and shine! You've got this!" },
+      { text: "Every morning is a fresh start."}
     ],
     afternoon: [
-      { text: "Keep pushing! You're halfway there.", emoji: "💪" },
-      { text: "Stay focused, the finish line is near.", emoji: "🎯" },
-      { text: "You're doing great! Keep going.", emoji: "⚡" }
+      { text: "Keep pushing! You're halfway there."},
+      { text: "Stay focused, the finish line is near."},
+      { text: "You're doing great! Keep going." }
     ],
     evening: [
-      { text: "Review and plan for tomorrow.", emoji: "🌙" },
-      { text: "Reflect on today's progress.", emoji: "✨" },
-      { text: "Rest well, you've earned it.", emoji: "🌟" }
+      { text: "Review and plan for tomorrow."},
+      { text: "Reflect on today's progress."},
+      { text: "Rest well, you've earned it."}
     ]
   };
 
@@ -253,7 +253,7 @@ function Dashboard({ tasks, setTasks }) {
               <Text fontSize="sm" fontWeight="semibold" color="brand.600" _dark={{ color: 'brand.400' }}>
                 FOCUS MODE
               </Text>
-              <Heading size="sm">🎯 Next up: {incompleteTasks[0].title}</Heading>
+              <Heading size="sm">Next up: {incompleteTasks[0].title}</Heading>
             </VStack>
             <Button
               colorScheme="brand"
