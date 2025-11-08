@@ -71,7 +71,7 @@ function App() {
     return [];
   });
 
-  const [activeView, setActiveView] = useState('overview');
+  const [activeView, setActiveView] = useState('tasks');
 
   useEffect(() => {
     localStorage.setItem('studentPlannerTasks', JSON.stringify(tasks));
@@ -91,10 +91,7 @@ function App() {
           {/* Content Area */}
           <Box flex="1" overflow="auto" bg="gray.50" _dark={{ bg: 'gray.900' }}>
             <Box maxW="1400px" mx="auto" p={6}>
-              {activeView === 'overview' && <Dashboard tasks={tasks} setTasks={setTasks} />}
-              {activeView === 'today' && <Dashboard tasks={tasks} setTasks={setTasks} viewMode="today" />}
-              {activeView === 'week' && <Dashboard tasks={tasks} setTasks={setTasks} viewMode="week" />}
-              {activeView === 'all' && <Dashboard tasks={tasks} setTasks={setTasks} viewMode="all" />}
+              {activeView === 'tasks' && <Dashboard tasks={tasks} setTasks={setTasks} />}
               {activeView === 'calendar' && <Calendar tasks={tasks} setTasks={setTasks} />}
               {activeView === 'analytics' && <Analytics tasks={tasks} />}
               {activeView === 'settings' && <Settings />}
@@ -110,10 +107,7 @@ function App() {
 function Sidebar({ activeView, setActiveView }) {
 
   const navItems = [
-    { id: 'overview', label: 'Overview', icon: MdDashboard },
-    { id: 'today', label: 'Today', icon: MdToday },
-    { id: 'week', label: 'This Week', icon: TimeIcon },
-    { id: 'all', label: 'All Tasks', icon: MdList },
+    { id: 'tasks', label: 'Tasks', icon: MdList },
     { id: 'calendar', label: 'Calendar', icon: CalendarIcon },
     { id: 'analytics', label: 'Analytics', icon: MdInsertChart },
     { id: 'settings', label: 'Settings', icon: MdSettings },

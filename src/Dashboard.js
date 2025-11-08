@@ -52,8 +52,9 @@ const getMotivationalQuote = () => {
   return quoteArray[Math.floor(Math.random() * quoteArray.length)];
 };
 
-function Dashboard({ tasks, setTasks, viewMode = 'overview' }) {
+function Dashboard({ tasks, setTasks }) {
   const [sortBy, setSortBy] = useState('dueDate');
+  const [viewMode, setViewMode] = useState('week'); // Default to 'This Week'
   const quote = useMemo(() => getMotivationalQuote(), []);
 
   const {
@@ -130,17 +131,19 @@ function Dashboard({ tasks, setTasks, viewMode = 'overview' }) {
   const filteredTasks = getFilteredTasks();
   const sortedTasks = getSortedTasks(filteredTasks);
 
-  const today = new Date();
-  const todayString = formatDateToYYYYMMDD(today);
-  const dueToday = sortedTasks.filter((task) => task.dueDate === todayString);
-  const dueThisWeek = sortedTasks.filter((task) => task.dueDate > todayString);
+  // Separate incomplete and completed tasks
+  const incompleteTasks = sortedTasks.filter((task) => !task.completed);
+  const completedTasks = sortedTasks.filter((task) => task.completed);
 
   // Calculate stats
+  const totalCompleted = tasks.filter((t) => t.completed).length;
+  const completionRate = tasks.length > 0 ? Math.round((totalCompleted / tasks.length) * 100) : 0;
+
   const stats = {
     totalTasks: tasks.length,
-    todayTasks: dueToday.length,
-    weekTasks: sortedTasks.length,
-    completionRate: 85, // Placeholder
+    incompleteTasks: incompleteTasks.length,
+    completedTasks: totalCompleted,
+    completionRate: completionRate,
     streak: 5, // Placeholder
   };
 
@@ -179,32 +182,63 @@ function Dashboard({ tasks, setTasks, viewMode = 'overview' }) {
       {/* Quick Stats */}
       <SimpleGrid columns={{ base: 2, md: 4 }} spacing={4}>
         <StatCard
-          label="Today"
-          value={stats.todayTasks}
+          label="Incomplete"
+          value={stats.incompleteTasks}
           icon={MdLocalFireDepartment}
           colorScheme="red"
         />
         <StatCard
-          label="This Week"
-          value={stats.weekTasks}
+          label="Completed"
+          value={stats.completedTasks}
           icon={TimeIcon}
-          colorScheme="blue"
+          colorScheme="green"
         />
         <StatCard
-          label="Total"
+          label="Total Tasks"
           value={stats.totalTasks}
           icon={AddIcon}
           colorScheme="purple"
         />
         <StatCard
-          label="Streak"
-          value={`🔥 ${stats.streak}`}
-          colorScheme="orange"
+          label="Completion"
+          value={`${stats.completionRate}%`}
+          colorScheme="blue"
         />
       </SimpleGrid>
 
+      {/* View Toggle Buttons */}
+      <HStack spacing={3} justify="center">
+        <Button
+          size="md"
+          colorScheme={viewMode === 'today' ? 'brand' : 'gray'}
+          variant={viewMode === 'today' ? 'solid' : 'outline'}
+          onClick={() => setViewMode('today')}
+          borderRadius="full"
+        >
+          Today
+        </Button>
+        <Button
+          size="md"
+          colorScheme={viewMode === 'week' ? 'brand' : 'gray'}
+          variant={viewMode === 'week' ? 'solid' : 'outline'}
+          onClick={() => setViewMode('week')}
+          borderRadius="full"
+        >
+          This Week
+        </Button>
+        <Button
+          size="md"
+          colorScheme={viewMode === 'all' ? 'brand' : 'gray'}
+          variant={viewMode === 'all' ? 'solid' : 'outline'}
+          onClick={() => setViewMode('all')}
+          borderRadius="full"
+        >
+          All Tasks
+        </Button>
+      </HStack>
+
       {/* Focus Mode Section */}
-      {sortedTasks.length > 0 && (
+      {incompleteTasks.length > 0 && (
         <Box
           bg="white"
           p={6}
@@ -219,7 +253,7 @@ function Dashboard({ tasks, setTasks, viewMode = 'overview' }) {
               <Text fontSize="sm" fontWeight="semibold" color="brand.600" _dark={{ color: 'brand.400' }}>
                 FOCUS MODE
               </Text>
-              <Heading size="sm">🎯 Next up: {sortedTasks[0].title}</Heading>
+              <Heading size="sm">🎯 Next up: {incompleteTasks[0].title}</Heading>
             </VStack>
             <Button
               colorScheme="brand"
@@ -230,7 +264,7 @@ function Dashboard({ tasks, setTasks, viewMode = 'overview' }) {
             </Button>
           </HStack>
           <Text fontSize="sm" color="gray.600" _dark={{ color: 'gray.400' }}>
-            Due {sortedTasks[0].dueDate} at {sortedTasks[0].dueTime}
+            Due {incompleteTasks[0].dueDate} at {incompleteTasks[0].dueTime}
           </Text>
         </Box>
       )}
@@ -296,28 +330,30 @@ function Dashboard({ tasks, setTasks, viewMode = 'overview' }) {
             </Select>
           </HStack>
 
-          {dueToday.length > 0 && (
+          {/* Incomplete Tasks Section */}
+          {incompleteTasks.length > 0 && (
             <Box mb={8}>
               <HStack spacing={2} mb={4}>
-                <Text fontSize="xl" fontWeight="bold">🔥 Due Today</Text>
-                <Badge colorScheme="red" fontSize="sm">{dueToday.length}</Badge>
+                <Text fontSize="xl" fontWeight="bold">📝 Incomplete Tasks</Text>
+                <Badge colorScheme="blue" fontSize="sm">{incompleteTasks.length}</Badge>
               </HStack>
               <VStack spacing={4} align="stretch">
-                {dueToday.map((task) => (
+                {incompleteTasks.map((task) => (
                   <TaskCard key={task.id} task={task} setTasks={setTasks} />
                 ))}
               </VStack>
             </Box>
           )}
 
-          {dueThisWeek.length > 0 && (
+          {/* Completed Tasks Section */}
+          {completedTasks.length > 0 && (
             <Box>
               <HStack spacing={2} mb={4}>
-                <Text fontSize="xl" fontWeight="bold">🗓️ Due This Week</Text>
-                <Badge colorScheme="blue" fontSize="sm">{dueThisWeek.length}</Badge>
+                <Text fontSize="xl" fontWeight="bold">✅ Completed Tasks</Text>
+                <Badge colorScheme="green" fontSize="sm">{completedTasks.length}</Badge>
               </HStack>
               <VStack spacing={4} align="stretch">
-                {dueThisWeek.map((task) => (
+                {completedTasks.map((task) => (
                   <TaskCard key={task.id} task={task} setTasks={setTasks} />
                 ))}
               </VStack>
@@ -329,8 +365,8 @@ function Dashboard({ tasks, setTasks, viewMode = 'overview' }) {
       {/* Modals */}
       <TaskForm setTasks={setTasks} isOpen={isTaskFormOpen} onClose={onTaskFormClose} />
       <SyllabusParser setTasks={setTasks} isOpen={isParserOpen} onClose={onParserClose} />
-      {sortedTasks.length > 0 && (
-        <FocusMode task={sortedTasks[0]} isOpen={isFocusModeOpen} onClose={onFocusModeClose} />
+      {incompleteTasks.length > 0 && (
+        <FocusMode task={incompleteTasks[0]} isOpen={isFocusModeOpen} onClose={onFocusModeClose} />
       )}
     </VStack>
   );
